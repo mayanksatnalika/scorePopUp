@@ -1,0 +1,4 @@
+// mayank satnalika
+This script will display pop up every 10 seconds t your ubuntu system displaying the current score of the ongoing match.
+For selecting the match, open the ongoing match in yahoo cricket and copy paste the match info url in the url link given in the code
+To change the pop up interval change the time specified in time.sleep funnction in the code.
