@@ -6,7 +6,6 @@ from gi.repository import Notify
 
 
 url="https://cricket.yahoo.com/cricket-live-score-england-vs-sri-lanka_192397"
-#url="https://cricket.yahoo.com/cricket-live-score-england-vs-sri-lanka_192397"
 url="https://cricket.yahoo.com/cricket-live-score-gujarat-lions-vs-hyderabad_193923"
 page=urllib2.urlopen(url)
 soup = BeautifulSoup(page.read(),'html.parser')
@@ -14,6 +13,8 @@ soup = BeautifulSoup(page.read(),'html.parser')
 print "now for current ongoing match "
 
 while(1):
+    page=urllib2.urlopen(url)
+    soup = BeautifulSoup(page.read(),'html.parser')
     info= " "
     infohead=" "
     for name in soup.find_all(class_="team-name",limit=2):
