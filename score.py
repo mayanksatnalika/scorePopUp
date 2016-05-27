@@ -7,6 +7,7 @@ from gi.repository import Notify
 
 url="https://cricket.yahoo.com/cricket-live-score-england-vs-sri-lanka_192397"
 #url="https://cricket.yahoo.com/cricket-live-score-england-vs-sri-lanka_192397"
+url="https://cricket.yahoo.com/cricket-live-score-gujarat-lions-vs-hyderabad_193923"
 page=urllib2.urlopen(url)
 soup = BeautifulSoup(page.read(),'html.parser')
 #print(soup.prettify())
@@ -31,7 +32,7 @@ while(1):
 
 
     i=0
-    sctmlst=[" "," "," "," "," "," "]
+    sctmlst=[" "," "," "," "," "," "," "]
     for team in soup.find_all(class_='tname',limit=2):
         sctmlst[i]= team.get_text()
         i= i+1
@@ -48,10 +49,15 @@ while(1):
 
     for ovr in soup.find_all(class_='ings-overs',limit=2):
         sctmlst[i]= ovr.get_text()
+        sctmlst[i]= "overs completed: "+sctmlst[i]
+        i= i+1
+    for rrr in soup.find_all(class_='rrr',limit=1):
+        sctmlst[i]= rrr.get_text()
+        sctmlst[i]= "reqd run rate: "+sctmlst[i]
         i= i+1
 
 
-    info= info + sctmlst[0]+"- "+ sctmlst[2]+ " " + sctmlst[1]+"- " + sctmlst[3]+ " "+ sctmlst[4]
+    info= info + sctmlst[0]+" "+ sctmlst[2]+ " " + sctmlst[1]+" " + sctmlst[3]+ " "+ sctmlst[4]+ " "+ sctmlst[5]
     
     Notify.init("Hello world")
     Hello=Notify.Notification.new(infohead, info , "dialog-information")
